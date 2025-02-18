@@ -1,53 +1,67 @@
-Oligo Analyzer Automation
 
-This repository contains a Python script designed to automate the interaction with the IDT's Oligo Analyzer Tool. The program uses Selenium WebDriver to automate browser actions for analyzing oligonucleotide interactions and hairpin structures directly from sequence data provided in an Excel file.
+---
 
-Features
+# Web Scraping Overview
 
-Automated Login: Automatically logs into the IDT website to access the Oligo Analyzer tools.
-Sequence Analysis:
+This repository contains various scripts and Jupyter Notebooks used for web scraping tasks, primarily focused on gathering and analyzing data for different bioinformatics projects.
 
-Dimer Analysis: Analyzes potential dimer formations between pairs of sequences.
+## Contents
 
-Hairpin Analysis: Checks for potential hairpin structures within single sequences.
+### [GEO_Webscrape_fromRTF.ipynb](https://github.com/N5cent28/WebScraping/blob/main/GEO_Webscrape_fromRTF.ipynb)
 
-Concentration Parameter Customization: Allows specification of oligo, sodium (Na), magnesium (Mg), and dNTP concentrations, with the ability to revert to default values when necessary.
+This Jupyter Notebook scrapes demographic data from individuals to regress on covariants for epigenetic age predictions. The dataset was then fed to an unsupervised machine learning model to investigate the epigenetics of aging. The notebook includes:
+- Reading and parsing RTF files.
+- Extracting GSM IDs, URLs, and sample titles.
+- Scraping demographic information from individual pages.
+- Converting data to a DataFrame and saving to CSV.
 
-Excel Integration: Reads sequences from an Excel file and writes the analysis results back to the same or a new file, including Delta G values and custom parameter settings.
+### [GEO_Webscrape_fromTXT.ipynb](https://github.com/N5cent28/WebScraping/blob/main/GEO_Webscrape_fromTXT.ipynb)
 
-Full Screen Mode: Operates in full screen to ensure all web elements are accessible.
+Similar to the previous notebook, this script scrapes demographic data from individuals to regress on covariants for epigenetic age predictions, but reads data from a TXT file. It includes:
+- Reading individual codes from a TXT file.
+- Scraping demographic information from individual pages.
+- Converting data to a DataFrame and saving to CSV.
 
-Prerequisites
+### [ScrapeDeltaG.py](https://github.com/N5cent28/WebScraping/blob/main/ScrapeDeltaG.py)
 
-Python 3.8+
-Selenium WebDriver
-OpenPyXL
-ChromeDriver compatible with the installed version of Chrome
+This Python script was created for a project at Proteovista LLC. It automates the interaction with IDT's Oligo Analyzer Tool to match oligo annealing temperatures. The script demonstrated that the sequence of the HSV genome chosen was not suitable for the task. It later helped find the optimal 900bp region of the HSV genome to maximize the ability to anneal sub-oligos at the same temperature. The script includes:
+- Automated login to the IDT website.
+- Sequence analysis for dimer and hairpin formations.
+- Reading sequences from an Excel file and writing results back.
+- Customizing concentration parameters for the analysis.
 
-Setup
+## Usage
 
-Python Packages: Install the required Python packages if not already installed:
-bash
-Copy code
-pip install selenium openpyxl httpcore
-ChromeDriver: Ensure ChromeDriver is downloaded and its path is correctly set in the script.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/N5cent28/WebScraping.git
+   ```
 
-Usage
+2. Navigate to the project directory:
+   ```bash
+   cd WebScraping
+   ```
 
-Excel File Format:
-Place the sequences and their corresponding labels in the Excel file.
-Ensure the file path and sheet names are correctly set in the main() function.
+3. For Jupyter Notebooks, open them using JupyterLab or Jupyter Notebook:
+   ```bash
+   jupyter lab
+   # or
+   jupyter notebook
+   ```
 
-Results:
-The results will be written back into the specified Excel file in designated columns for easy comparison and further analysis.
+4. Execute the cells in the notebook to run the analysis and scrape the data.
 
-Important Notes
-Ensure your IDT account credentials are securely handled within the script.
-Adjust the Selenium timeouts and waits based on your network speed and website response times.
-The script sets the browser to full screen to avoid elements not being visible due to screen resolution limitations.
+For the Python script, follow these steps:
+1. Ensure you have the required Python packages installed:
+   ```bash
+   pip install selenium openpyxl httpcore
+   ```
 
+2. Set the correct path for ChromeDriver in the script.
 
-Contributions to enhance the functionality or efficiency of this script are welcome. Please fork the repository and submit a pull request with your changes.
+3. Run the script:
+   ```bash
+   python ScrapeDeltaG.py
+   ```
 
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+---
